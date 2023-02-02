@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.zero.summer</groupId>
+        <artifactId>summer-commons</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>com.zero.summer.core</groupId>
+    <artifactId>summer-core-spring-boot-starter</artifactId>
+    <packaging>jar</packaging>
+    <description>
+        Summer - 通用核心组件
+    </description>
+    <dependencies>
+        <!--Spring Web 编码时需要,打包时剔除掉该依赖即可-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Hutool-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+
+    </dependencies>
+</project>
