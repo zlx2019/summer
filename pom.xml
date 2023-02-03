@@ -27,12 +27,17 @@
         <hutool.version>5.8.11</hutool.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
+        <ttl.version>2.14.2</ttl.version>
+        <p6spy.version>3.9.1</p6spy.version>
+        <druid.version>1.2.8</druid.version>
 
         <!--核心依赖版本-->
         <!--SpringBoot-->
         <spring-boot.version>3.0.2</spring-boot.version>
         <!--SpringCloud-->
         <spring-cloud.version>2022.0.1</spring-cloud.version>
+        <!--Mybatis Plus-->
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
     </properties>
 
     <!--全局基础依赖-->
@@ -74,8 +79,37 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+            <!--transmittable-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${ttl.version}</version>
+            </dependency>
 
+            <!--p6spy 开发环境数据源-->
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy.version}</version>
+            </dependency>
+            <!--druid 生产环境数据源-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
 
+            <!--Mybatis Plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
 
             <!--SpringBoot-->
             <dependency>

@@ -4,6 +4,7 @@ import java.io.Serial;
 
 /**
  * 自定义业务异常
+ *
  * @author Zero.
  * @date 2020/10/10
  */

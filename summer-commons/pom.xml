@@ -15,6 +15,7 @@
     </description>
     <modules>
         <module>summer-core-spring-boot-starter</module>
+        <module>summer-db-spring-boot-starter</module>
     </modules>
 
 </project>

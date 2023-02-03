@@ -15,7 +15,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -36,7 +35,6 @@ import java.util.stream.Stream;
  * @date 2023/2/2 7:58 PM
  */
 @Slf4j
-@Component
 public class SpringContextUtil implements ApplicationContextAware, BeanFactoryPostProcessor {
 
     /**
