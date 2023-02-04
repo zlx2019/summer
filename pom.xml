@@ -31,6 +31,8 @@
         <ttl.version>2.14.2</ttl.version>
         <p6spy.version>3.9.1</p6spy.version>
         <druid.version>1.2.8</druid.version>
+        <okhttps.version>3.4.1</okhttps.version>
+        <dynamic.version>3.6.1</dynamic.version>
 
         <!--核心依赖版本-->
         <!--SpringBoot-->
@@ -85,6 +87,12 @@
                 <artifactId>transmittable-thread-local</artifactId>
                 <version>${ttl.version}</version>
             </dependency>
+            <!--OkHttps-->
+            <dependency>
+                <groupId>com.ejlchina</groupId>
+                <artifactId>okhttps-jackson</artifactId>
+                <version>${okhttps.version}</version>
+            </dependency>
 
             <!--p6spy 开发环境数据源-->
             <dependency>
@@ -97,6 +105,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <!--dynamic 动态数据源-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic.version}</version>
             </dependency>
 
             <!--Mybatis Plus-->
@@ -111,7 +125,6 @@
                 <artifactId>mybatis-plus</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
-
             <!--SpringBoot-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
