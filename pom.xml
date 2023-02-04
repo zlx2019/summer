@@ -11,6 +11,7 @@
         Summer - 顶级工程
     </description>
     <modules>
+        <!--子工程-->
         <module>summer-commons</module>
         <module>summer-services</module>
     </modules>
@@ -99,6 +100,7 @@
             </dependency>
 
             <!--Mybatis Plus-->
+            <!--注意版本,想要兼容SpringBoot3至少需要3.5.3起步-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>

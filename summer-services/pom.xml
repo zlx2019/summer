@@ -14,25 +14,29 @@
         微服务层父工程
     </description>
     <modules>
+        <!--所有服务工程-->
         <module>summer-example</module>
     </modules>
 
     <dependencies>
+        <!--Summer DB-->
         <dependency>
             <groupId>com.zero.summer.db</groupId>
             <artifactId>summer-db-spring-boot-starter</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        <!--Summer Core-->
         <dependency>
             <groupId>com.zero.summer.core</groupId>
             <artifactId>summer-core-spring-boot-starter</artifactId>
             <version>1.0</version>
         </dependency>
-        <!--configuration-->
+        <!--Web-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--Configuration-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
