@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.zero.summer</groupId>
+        <groupId>com.summer</groupId>
         <artifactId>summer-commons</artifactId>
         <version>1.0</version>
     </parent>
-    <groupId>com.zero.summer.db</groupId>
+    <groupId>com.summer.db</groupId>
     <artifactId>summer-db-spring-boot-starter</artifactId>
     <packaging>jar</packaging>
     <description>
@@ -18,7 +18,7 @@
     <dependencies>
         <!--Summer Core核心公共依赖-->
         <dependency>
-            <groupId>com.zero.summer.core</groupId>
+            <groupId>com.summer.core</groupId>
             <artifactId>summer-core-spring-boot-starter</artifactId>
             <version>1.0</version>
         </dependency>

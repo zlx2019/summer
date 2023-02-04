@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.zero.summer</groupId>
+    <groupId>com.summer</groupId>
     <artifactId>summer</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
@@ -37,7 +37,7 @@
         <!--SpringCloud-->
         <spring-cloud.version>2022.0.1</spring-cloud.version>
         <!--Mybatis Plus-->
-        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <mybatis-plus.version>3.5.3</mybatis-plus.version>
     </properties>
 
     <!--全局基础依赖-->
@@ -50,7 +50,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
         </dependency>
-
         <!--Lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
