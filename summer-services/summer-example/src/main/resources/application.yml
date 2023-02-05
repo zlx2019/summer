@@ -1,11 +1,11 @@
-spring:
-  datasource:
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://127.0.0.1:3306/zeus_payment?characterEncoding=UTF8&useSSL=false
-    username: root
-    password: rootROOT@1234
-
-# 日志级别
-logging:
-  level:
-    com.zero.summer: trace
+#spring:
+#  datasource:
+#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    url: jdbc:p6spy:mysql://127.0.0.1:3306/zeus_payment?characterEncoding=UTF8&useSSL=false
+#    username: root
+#    password: rootROOT@1234
+#
+## 日志级别
+#logging:
+#  level:
+#    com.zero.summer: trace

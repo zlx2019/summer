@@ -1,0 +1,10 @@
+|￣￣￣￣￣￣￣￣￣￣￣￣|
+|                    |
+|  Miao Miao Miao... |
+|                    |
+|                    |
+|＿＿＿＿＿＿＿＿＿＿＿＿|
+(\__/) ||
+(•ㅅ•) ||
+/ 　 づv
+[Summer] SpringBoot Version: ${spring-boot.version} Application Name: ${application.title}

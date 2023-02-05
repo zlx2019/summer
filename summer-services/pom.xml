@@ -31,6 +31,13 @@
             <artifactId>summer-core-spring-boot-starter</artifactId>
             <version>1.0</version>
         </dependency>
+        <!--Summer Config-->
+        <dependency>
+            <groupId>com.zero.summer</groupId>
+            <artifactId>summer-config</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <!--Web 剔除Tomcat-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

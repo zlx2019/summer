@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    # 开发环境
+    active: dev
+  application:
+    name: summer-example-service
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: 127.0.0.1:8848
+        username: naocs
+        password: naocs
+        # 命名空间
+        namespace: db29548f-c4b5-4f7e-a9bd-16cec447b1eb
+        # 分组
+        group: Dev
+        # 配置文件格式
+        file-extension: yml
+        # 配置文件名称 summer-example-service-dev.yml
+        name: ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}

@@ -14,6 +14,7 @@
         <!--子工程-->
         <module>summer-commons</module>
         <module>summer-services</module>
+        <module>summer-config</module>
     </modules>
 
     <!--依赖版本定义-->
@@ -39,6 +40,8 @@
         <spring-boot.version>3.0.2</spring-boot.version>
         <!--SpringCloud-->
         <spring-cloud.version>2022.0.1</spring-cloud.version>
+        <!--SpringCloudAlibaba 预发布版本-->
+        <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>
         <!--Mybatis Plus-->
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
     </properties>
@@ -113,13 +116,14 @@
                 <version>${dynamic.version}</version>
             </dependency>
 
-            <!--Mybatis Plus-->
+            <!--Mybatis Plus与SpringBoot整合包-->
             <!--注意版本,想要兼容SpringBoot3至少需要3.5.3起步-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+            <!--Mybatis Plus-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus</artifactId>
@@ -133,12 +137,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <!--SpringCloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--SpringCloudAlibaba-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
