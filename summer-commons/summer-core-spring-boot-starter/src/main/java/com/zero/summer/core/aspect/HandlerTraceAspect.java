@@ -8,7 +8,6 @@ import org.springframework.aop.interceptor.CustomizableTraceInterceptor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.stereotype.Component;
 
 /**
  * 控制层方法追踪切面.
@@ -23,7 +22,7 @@ import org.springframework.stereotype.Component;
  */
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @Aspect
-@Component
+//@Component
 public class HandlerTraceAspect {
 
     /**

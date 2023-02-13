@@ -17,6 +17,8 @@
         <!--通用组件子工程-->
         <module>summer-core-spring-boot-starter</module>
         <module>summer-db-spring-boot-starter</module>
+        <module>summer-lock-spring-boot-starter</module>
+        <module>summer-cache-spring-boot-starter</module>
     </modules>
 
 </project>

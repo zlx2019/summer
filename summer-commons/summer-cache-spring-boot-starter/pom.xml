@@ -8,39 +8,27 @@
         <artifactId>summer-commons</artifactId>
         <version>1.0</version>
     </parent>
-    <groupId>com.zero.summer.db</groupId>
-    <artifactId>summer-db-spring-boot-starter</artifactId>
     <packaging>jar</packaging>
+    <artifactId>summer-cache-spring-boot-starter</artifactId>
     <description>
-        Summer - 通用数据访问组件
+        Summer - 通用缓存组件.
+        基于Redis实现.
     </description>
-
     <dependencies>
-        <!--Summer Core核心公共依赖-->
+        <!--Summer Core-->
         <dependency>
             <groupId>com.zero.summer.core</groupId>
             <artifactId>summer-core-spring-boot-starter</artifactId>
         </dependency>
-
-        <!--Mybatis Plus-->
+        <!--Redis-->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <!--p6spy 开发环境数据源-->
+        <!--Redis需要-->
         <dependency>
-            <groupId>p6spy</groupId>
-            <artifactId>p6spy</artifactId>
-        </dependency>
-        <!--druid 生产环境数据源-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-        </dependency>
-        <!--Mysql 驱动-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
         </dependency>
 
     </dependencies>

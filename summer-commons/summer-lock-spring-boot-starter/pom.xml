@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.zero.summer</groupId>
+        <artifactId>summer-commons</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>summer-lock-spring-boot-starter</artifactId>
+    <packaging>jar</packaging>
+    <description>
+        Summer - 通用分布式锁组件.
+        目前支持Redis、etcd.
+        后续发现优秀的开源组件会陆续支持.
+    </description>
+
+    <dependencies>
+        <!--Summer Cache-->
+        <dependency>
+            <groupId>com.zero.summer</groupId>
+            <artifactId>summer-cache-spring-boot-starter</artifactId>
+        </dependency>
+        <!--Summer Core-->
+        <dependency>
+            <groupId>com.zero.summer.core</groupId>
+            <artifactId>summer-core-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <!--Etcd-->
+        <dependency>
+            <groupId>io.etcd</groupId>
+            <artifactId>jetcd-core</artifactId>
+            <version>${jetcd.version}</version>
+        </dependency>
+    </dependencies>
+</project>

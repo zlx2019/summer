@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zero.summer.core.enums.ExceptionMsgEnum;
 import com.zero.summer.core.exception.BusinessException;
 import com.zero.summer.core.lock.DistributedLock;
+import com.zero.summer.core.lock.LockResult;
 import com.zero.summer.db.service.ISuperService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,8 +53,8 @@ public class SuperServiceImpl<M extends BaseMapper<T>,T> extends ServiceImpl<M,T
         Optional.ofNullable(lockKey).orElseThrow(()-> new BusinessException(ExceptionMsgEnum.LOCK_KEY_NULL.getMessage()));
         try {
             //加锁
-            boolean upLock = lock.lock(lockKey);
-            if (upLock){
+            LockResult lockResult = lock.lock(lockKey);
+            if (lockResult.isLock()){
                 //是否已存在记录,
                 if (super.count(conditionWrapper) == 0){
                     return super.save(model);

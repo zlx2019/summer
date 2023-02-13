@@ -1,5 +1,9 @@
 package com.zero.summer.core.lock;
 
+import com.zero.summer.core.exception.BusinessException;
+
+import java.util.concurrent.TimeUnit;
+
 /**
  * 分布式锁顶级接口
  *
@@ -12,18 +16,18 @@ public interface DistributedLock extends Lock {
      * 获取锁
      *
      * @param key lock key
-     * @return 成功/失败
+     * @return 分布式锁结果对象 {@link LockResult}
      */
-    boolean lock(String key);
+    LockResult lock(String key);
 
     /**
      * 获取锁
      *
      * @param key        lock key
      * @param retryCount 锁自旋次数
-     * @return 成功/失败
+     * @return 分布式锁结果对象 {@link LockResult}
      */
-    boolean lock(String key, int retryCount);
+    LockResult lock(String key, int retryCount);
 
     /**
      * 获取锁
@@ -31,45 +35,64 @@ public interface DistributedLock extends Lock {
      * @param key         key
      * @param retryCount  重试次数
      * @param sleepMillis 获取锁失败的重试间隔
-     * @return 成功/失败
+     * @return 分布式锁结果对象 {@link LockResult}
      */
-    boolean lock(String key, int retryCount, long sleepMillis);
+    LockResult lock(String key, int retryCount, long sleepMillis);
 
     /**
      * 获取锁
      *
      * @param key    key
      * @param expire 获取锁超时时间
-     * @return 成功/失败
+     * @param expireUnit 锁超时时间单位
+     * @return 分布式锁结果对象 {@link LockResult}
      */
-    boolean lock(String key, long expire);
+    LockResult lock(String key, long expire, TimeUnit expireUnit);
 
     /**
      * 获取锁
      *
      * @param key        key
      * @param expire     获取锁超时时间
+     * @param expireUnit 锁超时时间单位
      * @param retryCount 重试次数
-     * @return 成功/失败
+     * @return 分布式锁结果对象 {@link LockResult}
      */
-    boolean lock(String key, long expire, int retryCount);
+    LockResult lock(String key, long expire,TimeUnit expireUnit, int retryCount);
 
     /**
-     * 获取锁
+     * 获取锁(自旋+休眠)
      *
      * @param key         key
-     * @param expire      获取锁超时时间
-     * @param retryTimes  重试次数
+     * @param expire      锁的有效期
+     * @param expireUnit 锁超时时间单位
+     * @param retryCount  重试次数
      * @param sleepMillis 获取锁失败的重试间隔
-     * @return 成功/失败
+     * @return 分布式锁结果对象 {@link LockResult}
      */
-    boolean lock(String key, long expire, int retryTimes, long sleepMillis);
+    LockResult lock(String key, long expire,TimeUnit expireUnit, int retryCount, long sleepMillis);
+
+
+    //TODO 获取锁(阻塞式+公平锁)
+
 
     /**
-     * 释放锁
+     * 释放锁(Redis)
      *
      * @param key key值
      * @return 释放结果
      */
-    boolean releaseLock(String key);
+    default boolean releaseLock(String key){
+        throw new BusinessException("Redis分布式锁释放");
+    }
+
+    /**
+     * 释放锁(Etcd)
+     * @param lockResult  锁对象
+     * @return  释放结果
+     */
+    default boolean releaseLock(LockResult lockResult){
+        throw new BusinessException("Etcd分布式锁释放");
+    };
+
 }
