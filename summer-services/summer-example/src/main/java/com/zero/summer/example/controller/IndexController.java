@@ -5,7 +5,7 @@ import com.zero.summer.core.entity.abstracts.Result;
 import com.zero.summer.core.lock.LockResult;
 import com.zero.summer.lock.locks.EtcdDistributedLock;
 import com.zero.summer.lock.locks.RedisDistributedLock;
-import com.zero.summer.webclient.service.UserCallService;
+import com.zero.summer.webclient.client.UserServiceClient;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class IndexController {
 //    @Autowired
 //    private ReactorLoadBalancerExchangeFilterFunction lbFunction;
     @Autowired
-    private UserCallService userCallService;
+    private UserServiceClient userServiceClient;
 
     @GetMapping("/test/call")
     public Result call(){
@@ -56,7 +56,7 @@ public class IndexController {
 //        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
 //        UserCallService service = factory.createClient(UserCallService.class);
 //        Result<List<String>> result = service.list("Hello");
-        Result<List<String>> result = userCallService.list("你好啊");
+        Result<List<String>> result = userServiceClient.list("你好啊");
         return result;
     }
 

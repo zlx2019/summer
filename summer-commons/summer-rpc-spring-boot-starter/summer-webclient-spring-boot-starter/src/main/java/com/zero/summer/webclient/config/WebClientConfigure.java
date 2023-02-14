@@ -5,10 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 /**
- * WebClient注入
+ * 全局WebClient配置
  *
  * @author Zero.
  * @date 2023/2/14 4:26 PM
@@ -32,12 +31,4 @@ public class WebClientConfigure {
         return WebClient.builder().filter(loadBalancerFilter);
     }
 
-    /**
-     * 注入为声明式接口创建代理对象的工厂构建器
-     * @return {@link HttpServiceProxyFactory}
-     */
-    @Bean
-    public HttpServiceProxyFactory.Builder factoryBuild(){
-        return HttpServiceProxyFactory.builder();
-    }
 }

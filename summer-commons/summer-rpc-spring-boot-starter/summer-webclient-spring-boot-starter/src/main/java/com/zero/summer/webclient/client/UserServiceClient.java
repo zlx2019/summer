@@ -1,5 +1,6 @@
-package com.zero.summer.webclient.service;
+package com.zero.summer.webclient.client;
 
+import com.zero.summer.core.constant.ServiceConst;
 import com.zero.summer.core.entity.abstracts.Result;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,11 +14,14 @@ import java.util.List;
  *
  * @author Zero.
  * @date 2023/2/14 1:53 PM
+ *
+ * url: http://目标服务名
  */
 @HttpExchange(
+        url = "http://" + ServiceConst.USER,
         contentType = MediaType.APPLICATION_JSON_VALUE,
         accept = MediaType.APPLICATION_JSON_VALUE)
-public interface UserCallService {
+public interface UserServiceClient {
 
     /**
      * Example Get请求
