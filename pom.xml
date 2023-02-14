@@ -97,6 +97,12 @@
                 <artifactId>summer-config</artifactId>
                 <version>1.0</version>
             </dependency>
+            <!--Summer RPC WebClient-->
+            <dependency>
+                <groupId>com.zero.summer</groupId>
+                <artifactId>summer-webclient-spring-boot-starter</artifactId>
+                <version>1.0</version>
+            </dependency>
 
             <!--lang3-->
             <dependency>

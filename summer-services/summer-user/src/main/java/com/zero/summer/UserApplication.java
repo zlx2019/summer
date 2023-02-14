@@ -6,13 +6,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author Zero.
- * @date 2023/2/2 9:00 PM
+ * @date 2023/2/14 1:46 PM
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ExampleApplication {
-
+public class UserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ExampleApplication.class,args);
+        SpringApplication.run(UserApplication.class,args);
     }
 }

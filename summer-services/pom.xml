@@ -16,6 +16,7 @@
     <modules>
         <!--所有服务工程-->
         <module>summer-example</module>
+        <module>summer-user</module>
     </modules>
 
     <dependencies>
@@ -44,6 +45,18 @@
             <groupId>com.zero.summer</groupId>
             <artifactId>summer-lock-spring-boot-starter</artifactId>
         </dependency>
+        <!--Summer WebClient-->
+        <dependency>
+            <groupId>com.zero.summer</groupId>
+            <artifactId>summer-webclient-spring-boot-starter</artifactId>
+        </dependency>
+        <!--Nacos 注册中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+
 
         <!--Web 剔除Tomcat-->
         <dependency>
