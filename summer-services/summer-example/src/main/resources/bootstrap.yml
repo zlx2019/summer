@@ -26,7 +26,3 @@ spring:
         file-extension: yml
         # 配置文件名称 summer-example-service-dev.yml
         name: ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
-summer:
-  rpc:
-    enable:
-      web-client: true

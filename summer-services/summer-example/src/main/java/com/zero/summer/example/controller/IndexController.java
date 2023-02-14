@@ -29,33 +29,18 @@ public class IndexController {
     private RedisDistributedLock redisDistributedLockl;
     @Autowired
     private EtcdDistributedLock etcdDistributedLock;
-//    @Autowired
-//    private LoadBalancerClient loadBalancerClient;
 
 
     @GetMapping("/hello")
     public Result<String> hello(String name,Integer age) throws NacosException {
-//        ServiceInstance instance2 = loadBalancerClient.choose("summer-example-service");
-
-//        log.info("instance {}",instance2.getUri());
         return Result.Success("Hello!");
     }
 
-//    @Autowired
-//    private ReactorLoadBalancerExchangeFilterFunction lbFunction;
     @Autowired
     private UserServiceClient userServiceClient;
 
     @GetMapping("/test/call")
     public Result call(){
-//        WebClient client = WebClient.builder()
-////                .baseUrl("http://127.0.0.1:8888")
-//                .baseUrl("http://summer-user-service")
-//                .filter(lbFunction)
-//                .build();
-//        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
-//        UserCallService service = factory.createClient(UserCallService.class);
-//        Result<List<String>> result = service.list("Hello");
         Result<List<String>> result = userServiceClient.list("你好啊");
         return result;
     }
