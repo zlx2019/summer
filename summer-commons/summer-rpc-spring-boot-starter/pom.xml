@@ -11,11 +11,23 @@
     <packaging>pom</packaging>
     <modules>
         <module>summer-webclient-spring-boot-starter</module>
+        <module>summer-feign-spring-boot-starter</module>
     </modules>
     <artifactId>summer-rpc-spring-boot-starter</artifactId>
     <description>
         Summer - 通用远程调用组件父工程.
         该项目分别支持OpenFeign、gRPC、WebClient三种调用方式。
     </description>
-
+    <dependencies>
+        <!--Summer Core-->
+        <dependency>
+            <groupId>com.zero.summer.core</groupId>
+            <artifactId>summer-core-spring-boot-starter</artifactId>
+        </dependency>
+        <!--负载均衡器,手动获取注册中心的服务实例需要用到-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+    </dependencies>
 </project>

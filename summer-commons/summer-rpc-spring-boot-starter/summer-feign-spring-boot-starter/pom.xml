@@ -9,16 +9,15 @@
         <version>1.0</version>
     </parent>
     <packaging>jar</packaging>
-    <artifactId>summer-webclient-spring-boot-starter</artifactId>
+    <artifactId>summer-feign-spring-boot-starter</artifactId>
     <description>
-        Summer - WebClient调用组件.SpringBoot3原生支持的声明式服务调用组件.
+        Summer - Feign服务调用组件
     </description>
     <dependencies>
-        <!--WebClient由响应式Web提供-->
+        <!--Feign-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
-
 </project>

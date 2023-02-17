@@ -1,11 +1,78 @@
-#spring:
-#  datasource:
-#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-#    url: jdbc:p6spy:mysql://127.0.0.1:3306/zeus_payment?characterEncoding=UTF8&useSSL=false
-#    username: root
-#    password: rootROOT@1234
+#### spring-boot-actuator配置
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    # 开启重新启动服务端点
+#    restart:
+#      enabled: true
+#    # 开启优雅关闭服务端点
+#    shutdown:
+#      enabled: true
+#    health:
+#      show-details: always
 #
-## 日志级别
-#logging:
-#  level:
-#    com.zero.summer: trace
+#### 通用配置文件
+#spring:
+#  servlet:
+#    multipart:
+#      # 文件上传大小限制
+#      max-file-size: -1
+#      max-request-size: -1
+#  cloud:
+#    # feign全局配置 请参考https://juejin.cn/post/7130041310177820685
+#    openfeign:
+#      # 全局服务调用客户端配置
+#      client:
+#        config:
+#          default:
+#            # 读取数据超时 30s,默认为10s
+#            readTimeout: 30000
+#            # 连接超时 30s
+#            connectTimeout: 30000
+#            # 日记录级别
+#            logger-level: full
+#      compression:
+#        # 开启请求Gzib压缩
+#        request:
+#          enabled: true
+#          mime-types: text/xml,application/xml,application/json
+#          min-request-size: 2048
+#        response:
+#          # 开启Feign响应Gzib压缩
+#          enabled: true
+#      # 配置Feign内置请求客户端
+#      httpclient:
+#        enabled: true
+#        # 每个路由的最大连接数的默认值。 默认50
+#        max-connections-per-route: 100
+#        # 最大连接数 默认200
+#        max-connections: 1000
+#
+#
+####Mybatis Plus全局配置
+#mybatis-plus:
+#  # Mapper的Xml文件位置
+#  mapper-locations: classpath*:/mapper/**/*.xml
+#  # 启动时,是否检测Xml文件是否存在
+#  check-config-location: false
+#  global-config:
+#    db-config:
+#      #逻辑删除默认为 1: 已删除  0:未删除,如果与需求不符合需要更改。
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+#      # ID生成策略,自己填充。该类型可以通过自己注册自动填充插件进行填充
+#      id-type: input
+#  configuration:
+#    # 是否开启驼峰下划线转换 passWord To pass_word
+#    map-underscore-to-camel-case: true
+#    # 是否开启二级缓存
+#    cache-enabled: false
+#    # resultMap自动映射规则
+#    auto-mapping-behavior: partial
+#    # 自动映射失败后如何处理
+#    auto-mapping-unknown-column-behavior: none
+#
+#

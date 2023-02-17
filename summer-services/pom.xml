@@ -55,6 +55,11 @@
             <groupId>com.zero.summer</groupId>
             <artifactId>summer-auth-spring-boot-starter</artifactId>
         </dependency>
+        <!--Summer Feign-->
+        <dependency>
+            <groupId>com.zero.summer</groupId>
+            <artifactId>summer-feign-spring-boot-starter</artifactId>
+        </dependency>
         <!--Nacos 注册中心-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -85,6 +90,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <!--监控端点-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <!--Test-->
         <dependency>
