@@ -20,6 +20,7 @@
         <module>summer-lock-spring-boot-starter</module>
         <module>summer-cache-spring-boot-starter</module>
         <module>summer-rpc-spring-boot-starter</module>
+        <module>summer-auth-spring-boot-starter</module>
     </modules>
 
 </project>

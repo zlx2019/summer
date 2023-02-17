@@ -1,6 +1,7 @@
-package com.zero.summer.webclient.client;
+package com.zero.summer.core.rpc.web;
 
 import com.zero.summer.core.constant.ServiceConst;
+import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,5 +30,13 @@ public interface UserServiceClient {
      */
     @GetExchange("/user/list")
     Result<List<String>> list(@RequestParam("name") String name);
+
+    /**
+     * 根据用户名获取用户信息
+     * @param username 用户名
+     * @return         用户信息
+     */
+    @GetExchange("/user/find/user/username")
+    User findUserByUsername(@RequestParam("username") String username);
 
 }

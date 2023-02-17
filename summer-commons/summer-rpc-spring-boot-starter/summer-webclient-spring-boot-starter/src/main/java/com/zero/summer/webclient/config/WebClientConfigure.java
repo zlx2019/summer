@@ -1,9 +1,11 @@
 package com.zero.summer.webclient.config;
 
+import com.zero.summer.webclient.filter.TokenFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
@@ -22,13 +24,18 @@ public class WebClientConfigure {
     @Autowired
     private ReactorLoadBalancerExchangeFilterFunction loadBalancerFilter;
 
+    @Bean
+    public ExchangeFilterFunction tokenFilter(){
+        return new TokenFilter();
+    }
+
     /**
      * 注入WebClient 构建器
      * @return  {@link WebClient.Builder}
      */
     @Bean
     public WebClient.Builder builder(){
-        return WebClient.builder().filter(loadBalancerFilter);
+        return WebClient.builder().filter(loadBalancerFilter).filter(tokenFilter());
     }
 
 }

@@ -58,12 +58,17 @@ public class ModelAutoFillHandler implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
+        //MetaObjectHandler提供的默认方法的策略均为:如果属性有值则不覆盖,如果填充值为null则不填充
+        //填充更新字段时 先设置为null
+        metaObject.setValue(UPDATE_TIME,null);
+        metaObject.setValue(UPDATE_USER,null);
+
         //填充更新时间
         this.strictUpdateFill(metaObject,UPDATE_TIME,LocalDateTime::now,LocalDateTime.class);
-        //填充更新者
-        Long userId = UserContextHolder.getUser();
-        if (Objects.nonNull(userId)){
-            this.strictUpdateFill(metaObject,UPDATE_USER,()-> userId,Long.class);
+        Long user = UserContextHolder.getUser();
+        if (Objects.nonNull(user)){
+            //填充更新者
+            this.strictUpdateFill(metaObject,UPDATE_USER,()-> user,Long.class);
         }
     }
 }

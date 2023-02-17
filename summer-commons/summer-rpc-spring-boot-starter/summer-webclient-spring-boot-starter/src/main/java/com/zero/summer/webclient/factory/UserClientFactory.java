@@ -1,6 +1,6 @@
 package com.zero.summer.webclient.factory;
 
-import com.zero.summer.webclient.client.UserServiceClient;
+import com.zero.summer.core.rpc.web.UserServiceClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -29,7 +29,7 @@ public class UserClientFactory {
     public UserServiceClient userCallService(WebClient.Builder builder){
         return HttpServiceProxyFactory
                 .builder(WebClientAdapter.forClient(builder.build()))
-                .blockTimeout(Duration.ofSeconds(10)) // 调用超时时间
+                .blockTimeout(Duration.ofSeconds(10)) // 调用超时时间 10s
                 .build().createClient(UserServiceClient.class);//创建接口的代理对象
     }
 

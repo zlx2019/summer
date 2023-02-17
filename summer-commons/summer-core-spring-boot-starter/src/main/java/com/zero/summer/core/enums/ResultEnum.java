@@ -23,6 +23,8 @@ public enum ResultEnum {
     USER_NOT_FOUND_ERR(4004,"该用户不存在!"),
 
 
+
+
     /** 参数*/
     VALID_DATA_ERR(400,"参数校验异常!");
 

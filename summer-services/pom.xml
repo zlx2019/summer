@@ -50,14 +50,21 @@
             <groupId>com.zero.summer</groupId>
             <artifactId>summer-webclient-spring-boot-starter</artifactId>
         </dependency>
+        <!--Summer Auth-->
+        <dependency>
+            <groupId>com.zero.summer</groupId>
+            <artifactId>summer-auth-spring-boot-starter</artifactId>
+        </dependency>
         <!--Nacos 注册中心-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
-
-
+        <!--数据校验-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
         <!--Web 剔除Tomcat-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

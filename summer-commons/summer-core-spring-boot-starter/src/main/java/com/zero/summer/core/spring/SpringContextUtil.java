@@ -4,6 +4,8 @@ import com.zero.summer.core.utils.text.TextUtil;
 import com.zero.summer.core.utils.valid.AssertUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.ListableBeanFactory;
@@ -77,7 +79,7 @@ public class SpringContextUtil implements ApplicationContextAware, BeanFactoryPo
      * @param applicationContext Spring 上下文
      */
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(@NotNull ApplicationContext applicationContext) throws BeansException {
         SpringContextUtil.applicationContext = applicationContext;
         initDefaultBeanFactory();
     }
@@ -87,7 +89,7 @@ public class SpringContextUtil implements ApplicationContextAware, BeanFactoryPo
      * @param beanFactory Spring Bean工厂
      */
     @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
         SpringContextUtil.beanFactory = beanFactory;
     }
 
@@ -132,6 +134,7 @@ public class SpringContextUtil implements ApplicationContextAware, BeanFactoryPo
      * @param <T>      Bean 原型
      * @return         Bean 实例
      */
+    @SuppressWarnings("unchecked")
     public static <T> T getBean(String beanName) {
         getBeanFactory().getBeanDefinitionCount();
         return (T) getBeanFactory().getBean(beanName);
@@ -398,11 +401,24 @@ public class SpringContextUtil implements ApplicationContextAware, BeanFactoryPo
         try {
             Constructor<T> constructor = clazz.getConstructor(Object.class, source.getClass());
             AssertUtil.isNull(constructor,"【事件对象不规范,没有包含对应的构造函数!】");
-            T instance = constructor.newInstance(applicationContext, source);
-            return instance;
+            return constructor.newInstance(applicationContext, source);
         }catch (Exception e){
             log.error("事件Event对象 构建错误! err:{}",e.getMessage());
             return null;
         }
+    }
+
+    /**
+     * 获取当前Bean的Aop代理对象
+     * 例如在同一个Bean中,A方法想直接调用B方法,直接调用会导致通过Spring代理切入的,大部分功能会失效.
+     * 如若不想Bean注入自己,就通过此方法获取代理对象,通过代理对象调用B方法即可.
+     *
+     * @param target    当前Bean对象,传入this即可.
+     * @return          当前Bean的代理对象
+     * @param <T>       this
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBeanProxy(T target){
+        return (T) AopContext.currentProxy();
     }
 }
