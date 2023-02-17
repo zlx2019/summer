@@ -3,7 +3,7 @@ package com.zero.summer.user.service.impl;
 import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
 import com.zero.summer.core.pojo.request.user.SaveUserRequest;
-import com.zero.summer.core.pojo.response.UserResponse;
+import com.zero.summer.core.pojo.response.user.UserResponse;
 import com.zero.summer.core.utils.CloneUtil;
 import com.zero.summer.db.service.impl.SuperServiceImpl;
 import com.zero.summer.user.mapper.UserMapper;

@@ -78,7 +78,8 @@ public class TokenAuthorizationFilter extends OncePerRequestFilter {
         }else {
             final String authorization = request.getHeader(SecurityConstant.TOKEN_KEY);
             if (StringUtils.isBlank(authorization)) {
-                responseHandler("未提供Token~",response);
+                filterChain.doFilter(request,response);
+//                responseHandler("未提供Token~",response);
                 return;
             }
             // 校验Token及前缀

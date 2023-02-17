@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
 import com.zero.summer.core.pojo.request.user.SaveUserRequest;
-import com.zero.summer.core.pojo.response.UserResponse;
+import com.zero.summer.core.pojo.response.user.UserResponse;
 import com.zero.summer.user.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -32,11 +32,12 @@ public class UserController {
 
     /**
      * 根据用户名获取用户信息
+     *
      * @param username  用户名
-     * @return
+     * @return {@link User}
      */
-    @GetMapping("/find/user/username")
-    public User findUserByUsername(String username){
+    @GetMapping("/{username}")
+    public User findUserByUsername(@PathVariable String username){
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<User>()
                 .eq(User::getUsername, username);
         return userService.getOne(wrapper);

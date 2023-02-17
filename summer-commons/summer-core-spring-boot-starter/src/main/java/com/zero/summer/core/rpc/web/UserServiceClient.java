@@ -4,6 +4,7 @@ import com.zero.summer.core.constant.ServiceConst;
 import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.HttpExchange;
@@ -36,7 +37,7 @@ public interface UserServiceClient {
      * @param username 用户名
      * @return         用户信息
      */
-    @GetExchange("/user/find/user/username")
-    User findUserByUsername(@RequestParam("username") String username);
+    @GetExchange("/user/{username}")
+    User findUserByUsername(@PathVariable("username") String username);
 
 }

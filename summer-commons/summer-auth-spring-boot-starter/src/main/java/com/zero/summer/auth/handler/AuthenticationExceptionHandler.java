@@ -24,6 +24,7 @@ import java.io.IOException;
 @Slf4j
 public class AuthenticationExceptionHandler implements AuthenticationEntryPoint {
 
+
     /**
      * 统一身份验证异常处理
      */
