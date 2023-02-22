@@ -15,13 +15,13 @@ public class UserContextHolder {
      * 注意: 重写 TransmittableThreadLocal的 copy() childValue()
      * 两个方法实现开启子线程时只传递父线程当时持有的数据,后续父线程操作不影响子线程
      */
-    private static final ThreadLocal<Long> CONTEXT = new TransmittableThreadLocal<>();
+    private static final ThreadLocal<String> CONTEXT = new TransmittableThreadLocal<>();
 
     /**
      * 设置用户信息
      * @param userId 用户ID
      */
-    public static void setUser(Long userId){
+    public static void setUser(String userId){
         CONTEXT.set(userId);
     }
 
@@ -29,8 +29,12 @@ public class UserContextHolder {
      * 获取用户信息
      * @return 用户ID
      */
-    public static Long getUser(){
+    public static String getUser(){
         return CONTEXT.get();
+    }
+
+    public static Long getUserId(){
+        return Long.valueOf(getUser());
     }
 
     /**

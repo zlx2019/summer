@@ -1,8 +1,13 @@
 #### spring-boot-actuator配置
 #management:
+#  health:
+#    circuitbreakers:
+#      # 开启断路器端点
+#      enabled: true
 #  endpoints:
 #    web:
 #      exposure:
+#        # 打开所有监控端点
 #        include: '*'
 #  endpoint:
 #    # 开启重新启动服务端点
@@ -12,6 +17,7 @@
 #    shutdown:
 #      enabled: true
 #    health:
+#      # 始终显示
 #      show-details: always
 #
 #### 通用配置文件
@@ -24,14 +30,17 @@
 #  cloud:
 #    # feign全局配置 请参考https://juejin.cn/post/7130041310177820685
 #    openfeign:
-#      # 全局服务调用客户端配置
+#      # 开启feign 断路器
+#      circuitbreaker:
+#        enabled: true
+#      # 全局客户端配置
 #      client:
 #        config:
 #          default:
-#            # 读取数据超时 30s,默认为10s
-#            readTimeout: 30000
-#            # 连接超时 30s
-#            connectTimeout: 30000
+#            # 读取数据超时 10s,默认为10s
+#            readTimeout: 20000
+#            # 连接超时 10s
+#            connectTimeout: 20000
 #            # 日记录级别
 #            logger-level: full
 #      compression:
@@ -45,12 +54,25 @@
 #          enabled: true
 #      # 配置Feign内置请求客户端
 #      httpclient:
-#        enabled: true
+#        enabled: false
 #        # 每个路由的最大连接数的默认值。 默认50
 #        max-connections-per-route: 100
 #        # 最大连接数 默认200
 #        max-connections: 1000
-#
+#        # 使用http5作为客户端
+#        hc5:
+#          enabled: true
+## resilience4j 全局配置
+## 相关配置请参考: https://resilience4j.readme.io/docs/getting-started-3
+#resilience4j:
+#  # 时间限制器配置
+#  timelimiter:
+#    configs:
+#      default:
+#        # 服务调用超时时间(建议与feign保持一致)
+#        timeoutDuration: 20s
+#        # 超时后直接取消正在运行的任务
+#        cancel-running-future: true
 #
 ####Mybatis Plus全局配置
 #mybatis-plus:
@@ -76,3 +98,8 @@
 #    auto-mapping-unknown-column-behavior: none
 #
 #
+#summer:
+#  rpc:
+#    interceptor:
+#      #开启 feign拦截器
+#      feign: true

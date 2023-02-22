@@ -45,7 +45,7 @@ public class ModelAutoFillHandler implements MetaObjectHandler {
         //填充更新时间
         this.strictInsertFill(metaObject,UPDATE_TIME,LocalDateTime::now,LocalDateTime.class);
         //填充创建者与更新者
-        Long userId = UserContextHolder.getUser();
+        Long userId = UserContextHolder.getUserId();
         if (Objects.nonNull(userId)){
             this.strictInsertFill(metaObject,CREATE_USER,()-> userId,Long.class);
             this.strictInsertFill(metaObject,UPDATE_USER,()-> userId,Long.class);
@@ -65,7 +65,7 @@ public class ModelAutoFillHandler implements MetaObjectHandler {
 
         //填充更新时间
         this.strictUpdateFill(metaObject,UPDATE_TIME,LocalDateTime::now,LocalDateTime.class);
-        Long user = UserContextHolder.getUser();
+        Long user = UserContextHolder.getUserId();
         if (Objects.nonNull(user)){
             //填充更新者
             this.strictUpdateFill(metaObject,UPDATE_USER,()-> user,Long.class);

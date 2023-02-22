@@ -1,7 +1,8 @@
 package com.zero.summer.example.controller;
 
-import com.alibaba.nacos.api.exception.NacosException;
+import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
+import com.zero.summer.core.rpc.feign.UserService;
 import com.zero.summer.core.rpc.web.UserServiceClient;
 import com.zero.summer.lock.locks.EtcdDistributedLock;
 import com.zero.summer.lock.locks.RedisDistributedLock;
@@ -25,9 +26,14 @@ public class IndexController {
     @Autowired
     private EtcdDistributedLock etcdDistributedLock;
 
+    @Autowired
+    private UserService userService;
+
 
     @GetMapping("/hello")
-    public Result<String> hello(String name,Integer age) throws NacosException {
+    public Result<String> hello()  {
+        User zlx = userService.findUserByUsername("zlx");
+        log.info("user:{}",zlx);
         return Result.Success("Hello!");
     }
 

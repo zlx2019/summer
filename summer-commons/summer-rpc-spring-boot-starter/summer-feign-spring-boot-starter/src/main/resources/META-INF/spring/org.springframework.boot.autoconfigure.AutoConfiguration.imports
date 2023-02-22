@@ -1,0 +1,2 @@
+com.zero.summer.feign.config.FeignAutoConfigure
+com.zero.summer.feign.config.RestTemplateAutoConfigure

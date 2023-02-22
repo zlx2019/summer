@@ -9,15 +9,15 @@ spring:
       # 注册中心
       discovery:
         server-addr: 127.0.0.1:8848
-        username: nacos
-        password: root1234@
+        username: summer
+        password: summer
         namespace: db29548f-c4b5-4f7e-a9bd-16cec447b1eb
         group: Dev
       # 配置中心
       config:
         server-addr: 127.0.0.1:8848
         username: summer
-        password: root1234@
+        password: summer
         # 命名空间
         namespace: db29548f-c4b5-4f7e-a9bd-16cec447b1eb
         # 分组

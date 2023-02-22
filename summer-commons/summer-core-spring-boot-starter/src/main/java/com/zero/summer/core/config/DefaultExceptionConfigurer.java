@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -46,6 +47,7 @@ public class DefaultExceptionConfigurer {
         return defHandler(e.getMessage() == null ? "业务执行异常,请检查!" : e.getMessage(), e);
     }
 
+
     /**
      * 所有异常统一处理
      * 返回状态码:500
@@ -64,6 +66,17 @@ public class DefaultExceptionConfigurer {
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
     public Result handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
         return defHandler("不支持当前请求方法", e);
+    }
+
+    /**
+     * 如果身份验证请求因凭据无效而被拒绝，则引发。对于要引发的异常，这意味着帐户既未锁定也未禁用
+     * 安全认证失败异常处理
+     * 返回状态码:401
+     */
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(BadCredentialsException.class)
+    public Result handleAuthLoginException(BadCredentialsException e){
+        return defHandler("登录失败,用户名密码不正确!",e);
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.zero.summer.auth.service;
 
+import com.zero.summer.core.rpc.feign.UserService;
 import com.zero.summer.core.rpc.web.UserServiceClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class IUserDetailsService implements UserDetailsService {
 
     private final UserServiceClient userServiceClient;
+    private final UserService userService;
 
     /**
      * Secuity 认证获取处理方法,根据username查询用户信息
@@ -25,6 +27,6 @@ public class IUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 远程调用用户服务,获取用户信息
-        return userServiceClient.findUserByUsername(username);
+        return userService.findUserByUsername(username);
     }
 }

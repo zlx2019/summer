@@ -24,6 +24,35 @@ public interface Constant {
 
     /** 默认字符集格式*/
     String CHAR_SET = "UTF-8";
-    /** UserId 在Token中的Key*/
-    String TOKEN_USER_ID = "userId";
+
+
+    /**
+     * 用户id 在请求头中的Key
+     */
+    String USER_ID_HEADER = "x-userId-header";
+
+    /**
+     * 用户id 在tokenClaims中的Key
+     */
+    String USER_ID_TOKEN = "userId-token";
+
+    /**
+     * 日志链路追踪id信息头
+     */
+    String TRACE_ID_HEADER = "x-traceId-header";
+    /**
+     * 日志链路追踪id日志标志
+     */
+    String LOG_TRACE_ID = "traceId";
+
+    /**
+     * RPC通信时 用户ID标识Key
+     */
+    String RPC_USER_ID_KEY = "rpc-user-key";
+
+    /**
+     * RPC通信时,服务端响应码Key
+     */
+    String RPC_RESULT_CODE_KEY = "rpc-result-code-key";
+
 }

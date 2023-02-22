@@ -1,6 +1,8 @@
-package com.zero.summer.auth.utils;
+package com.zero.summer.core.utils;
 
+import com.zero.summer.core.constant.Constant;
 import com.zero.summer.core.constant.SecurityConstant;
+import com.zero.summer.core.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -40,6 +42,17 @@ public class TokenUtil {
     public static String generateToken(UserDetails userDetails){
         return generateToken(userDetails.getUsername());
     }
+
+    /**
+     * 将用户Id 写入Token载体中
+     * @param userDetails   用户信息
+     * @return      Token
+     */
+    public static String generateToken(User userDetails){
+        Map<String, Object> params = Map.of(Constant.USER_ID_TOKEN, userDetails.getId());
+        return generateToken(params,userDetails);
+    }
+
     public static String generateToken(String username){
         return generateToken(new HashMap<>(),username);
     }
@@ -72,7 +85,7 @@ public class TokenUtil {
      * @param function  要获取的Claims属性函数
      * @return          Claims的属性值
      */
-    private static  <T> T getClaimsVal(String token, Function<Claims,T> function){
+    public static  <T> T getClaimsVal(String token, Function<Claims,T> function){
         return function.apply(parseToken(token));
     }
 

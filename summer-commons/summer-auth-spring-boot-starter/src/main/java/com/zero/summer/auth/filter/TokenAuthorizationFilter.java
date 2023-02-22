@@ -1,11 +1,13 @@
 package com.zero.summer.auth.filter;
 
-import com.zero.summer.auth.utils.TokenUtil;
 import com.zero.summer.core.constant.Constant;
 import com.zero.summer.core.constant.SecurityConstant;
+import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
 import com.zero.summer.core.enums.ResultEnum;
+import com.zero.summer.core.holder.UserContextHolder;
 import com.zero.summer.core.utils.JsonUtil;
+import com.zero.summer.core.utils.TokenUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
@@ -21,7 +23,6 @@ import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.AntPathMatcher;
@@ -30,7 +31,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 /**
  * 鉴权过滤器,用来校验JWT Token是否有效.
@@ -103,23 +104,37 @@ public class TokenAuthorizationFilter extends OncePerRequestFilter {
                 return;
             }
             if (SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
-            // 校验Token解析出的Username用户是否存在于数据库
-            if (Objects.isNull(userDetails)){
-                responseHandler("Token的用户不存在~",response);
-                return;
-            }
-                // 校验通过,生成认证信息
+            // TODO 校验Token解析出的Username用户是否存在于数据库 (暂时不校验)
+            //UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
+            //if (Objects.isNull(userDetails)){
+            //    responseHandler("Token的用户不存在~",response);
+            //    return;
+            //}
+                // 校验通过
+                // 从解析完的claims中获取用户名与用户ID
+
+                // 认证通过后,处理用户信息,设置到一些上下文会话中
+                String username = claims.getSubject();
+                String userId = Optional.ofNullable(claims.get(Constant.USER_ID_TOKEN))
+                        .map(String::valueOf).orElse(null);
+                // 构建用户认证信息
+                User userDetails = new User();
+                userDetails.setUsername(username);
+                userDetails.setId(Long.valueOf(userId));
+                // 生成SpringSecurity认证信息
                 UsernamePasswordAuthenticationToken authenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, new ArrayList<>());
+
                 // 从当前http请求中 读取有关当前请求的信息
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                // 将认证信息设置到Security上下文
+                // 将认证信息设置到Security上下文,如果不设置则无法正常使用.
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                // 将UserID设置到全局会话中,方便传递
+                UserContextHolder.setUser(userId);
             }
             filterChain.doFilter(request, response);
         }
-        }
+    }
 
         /**
          * 认证失败,根据不同的原因,自定义响应信息处理.
