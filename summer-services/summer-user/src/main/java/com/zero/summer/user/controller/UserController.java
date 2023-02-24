@@ -1,9 +1,7 @@
 package com.zero.summer.user.controller;
 
-import com.zero.summer.core.constant.SecurityConstant;
 import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
-import com.zero.summer.core.holder.UserContextHolder;
 import com.zero.summer.core.pojo.request.user.LoginUserRequest;
 import com.zero.summer.core.pojo.request.user.SaveUserRequest;
 import com.zero.summer.core.pojo.response.user.UserResponse;
@@ -11,8 +9,6 @@ import com.zero.summer.user.service.IUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -53,11 +49,11 @@ public class UserController {
      */
     @GetMapping("/{username}")
     public User findUserByUsername(@PathVariable("username") String username, HttpServletRequest request) throws InterruptedException {
-        log.info("userID:{}",UserContextHolder.getUser());
-        log.info("token:{}",request.getHeader(SecurityConstant.TOKEN_KEY));
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User u = (User)authentication.getPrincipal();
-        log.info("username:{}",u.getUsername());
+//        log.info("userID:{}",UserContextHolder.getUser());
+//        log.info("token:{}",request.getHeader(SecurityConstant.TOKEN_KEY));
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        User u = (User)authentication.getPrincipal();
+//        log.info("username:{}",u.getUsername());
         return userService.getUser(username);
     }
 

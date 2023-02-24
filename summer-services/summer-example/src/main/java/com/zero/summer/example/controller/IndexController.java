@@ -32,7 +32,7 @@ public class IndexController {
 
     @GetMapping("/hello")
     public Result<String> hello()  {
-        User zlx = userService.findUserByUsername("zlx");
+        User zlx = userServiceClient.findUserByUsername("zlx");
         log.info("user:{}",zlx);
         return Result.Success("Hello!");
     }

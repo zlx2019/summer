@@ -20,7 +20,7 @@ import java.util.List;
  * url: http://目标服务名
  */
 @HttpExchange(
-        url = "http://" + ServiceConst.USER,
+        url = ServiceConst.USER_URI,
         contentType = MediaType.APPLICATION_JSON_VALUE,
         accept = MediaType.APPLICATION_JSON_VALUE)
 public interface UserServiceClient {
