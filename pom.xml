@@ -46,6 +46,8 @@
         <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>
         <!--Mybatis Plus-->
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
+        <!--Summer Version-->
+        <summer.version>1.0</summer.version>
     </properties>
 
     <!--全局基础依赖-->
@@ -72,49 +74,55 @@
             <dependency>
                 <groupId>com.zero.summer.core</groupId>
                 <artifactId>summer-core-spring-boot-starter</artifactId>
-                <version>1.0</version>
+                <version>${summer.version}</version>
             </dependency>
             <!--Summer 数据访问组件-->
             <dependency>
                 <groupId>com.zero.summer.db</groupId>
                 <artifactId>summer-db-spring-boot-starter</artifactId>
-                <version>1.0</version>
+                <version>${summer.version}</version>
             </dependency>
             <!--Summer 缓存组件-->
             <dependency>
                 <groupId>com.zero.summer</groupId>
                 <artifactId>summer-cache-spring-boot-starter</artifactId>
-                <version>1.0</version>
+                <version>${summer.version}</version>
             </dependency>
             <!--Summer 分布式锁组件-->
             <dependency>
                 <groupId>com.zero.summer</groupId>
                 <artifactId>summer-lock-spring-boot-starter</artifactId>
-                <version>1.0</version>
+                <version>${summer.version}</version>
             </dependency>
             <!--Summer 配置组件-->
             <dependency>
                 <groupId>com.zero.summer</groupId>
                 <artifactId>summer-config</artifactId>
-                <version>1.0</version>
+                <version>${summer.version}</version>
             </dependency>
             <!--Summer RPC WebClient-->
             <dependency>
                 <groupId>com.zero.summer</groupId>
                 <artifactId>summer-webclient-spring-boot-starter</artifactId>
-                <version>1.0</version>
+                <version>${summer.version}</version>
             </dependency>
-            <!--Summer Auth-->
+            <!--Summer - RSocket-->
             <dependency>
                 <groupId>com.zero.summer</groupId>
-                <artifactId>summer-auth-spring-boot-starter</artifactId>
-                <version>1.0</version>
+                <artifactId>summer-rsocket-spring-boot-starter</artifactId>
+                <version>${summer.version}</version>
             </dependency>
             <!--Summer Feign-->
             <dependency>
                 <groupId>com.zero.summer</groupId>
                 <artifactId>summer-feign-spring-boot-starter</artifactId>
-                <version>1.0</version>
+                <version>${summer.version}</version>
+            </dependency>
+            <!--Summer Auth-->
+            <dependency>
+                <groupId>com.zero.summer</groupId>
+                <artifactId>summer-auth-spring-boot-starter</artifactId>
+                <version>${summer.version}</version>
             </dependency>
             <!--lang3-->
             <dependency>

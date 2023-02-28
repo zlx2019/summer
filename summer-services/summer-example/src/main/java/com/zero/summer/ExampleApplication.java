@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
+ @RSocketExchange
  * @author Zero.
  * @date 2023/2/2 9:00 PM
  */

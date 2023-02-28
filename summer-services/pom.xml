@@ -36,15 +36,15 @@
             <artifactId>summer-config</artifactId>
         </dependency>
         <!--Summer Cache-->
-        <dependency>
-            <groupId>com.zero.summer</groupId>
-            <artifactId>summer-cache-spring-boot-starter</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.zero.summer</groupId>-->
+<!--            <artifactId>summer-cache-spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
         <!--Summer Lock-->
-        <dependency>
-            <groupId>com.zero.summer</groupId>
-            <artifactId>summer-lock-spring-boot-starter</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.zero.summer</groupId>-->
+<!--            <artifactId>summer-lock-spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
         <!--Summer WebClient-->
         <dependency>
             <groupId>com.zero.summer</groupId>
@@ -59,6 +59,11 @@
         <dependency>
             <groupId>com.zero.summer</groupId>
             <artifactId>summer-feign-spring-boot-starter</artifactId>
+        </dependency>
+        <!--Summer - RSocket-->
+        <dependency>
+            <groupId>com.zero.summer</groupId>
+            <artifactId>summer-rsocket-spring-boot-starter</artifactId>
         </dependency>
         <!--Nacos 注册中心-->
         <dependency>
@@ -86,6 +91,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
+
         <!--Configuration-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -54,6 +54,7 @@ public class UserController {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        User u = (User)authentication.getPrincipal();
 //        log.info("username:{}",u.getUsername());
+//        TimeUnit.SECONDS.sleep(10);
         return userService.getUser(username);
     }
 

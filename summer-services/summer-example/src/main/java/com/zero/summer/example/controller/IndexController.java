@@ -4,8 +4,7 @@ import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
 import com.zero.summer.core.rpc.feign.UserService;
 import com.zero.summer.core.rpc.web.UserServiceClient;
-import com.zero.summer.lock.locks.EtcdDistributedLock;
-import com.zero.summer.lock.locks.RedisDistributedLock;
+import com.zero.summer.rsocket.client.UserSocketClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,20 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class IndexController {
 
-    @Autowired
-    private RedisDistributedLock redisDistributedLockl;
-    @Autowired
-    private EtcdDistributedLock etcdDistributedLock;
+//    @Autowired
+//    private RedisDistributedLock redisDistributedLockl;
+//    @Autowired
+//    private EtcdDistributedLock etcdDistributedLock;
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private UserSocketClient userSocketClient;
 
     @GetMapping("/hello")
     public Result<String> hello()  {
-        User zlx = userServiceClient.findUserByUsername("zlx");
-        log.info("user:{}",zlx);
-        return Result.Success("Hello!");
+        User user = new User();
+        user.setUsername("哈哈哈");
+        String block = userSocketClient.hello(user).block();
+        return Result.Success(block);
     }
 
     @Autowired

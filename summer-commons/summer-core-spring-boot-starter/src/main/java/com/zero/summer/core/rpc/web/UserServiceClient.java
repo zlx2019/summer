@@ -3,7 +3,6 @@ package com.zero.summer.core.rpc.web;
 import com.zero.summer.core.constant.ServiceConst;
 import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.service.annotation.GetExchange;
@@ -19,10 +18,7 @@ import java.util.List;
  *
  * url: http://目标服务名
  */
-@HttpExchange(
-        url = ServiceConst.USER_URI,
-        contentType = MediaType.APPLICATION_JSON_VALUE,
-        accept = MediaType.APPLICATION_JSON_VALUE)
+@HttpExchange(url = ServiceConst.USER_URI)
 public interface UserServiceClient {
 
     /**

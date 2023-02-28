@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author Zero.
@@ -14,6 +15,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class UserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class,args);
+        ConfigurableApplicationContext context = SpringApplication.run(UserApplication.class, args);
+//        RSocketMessageHandler handler = context.getBean(RSocketMessageHandler.class);
+//        CloseableChannel server = RSocketServer.create(handler.responder())
+//                .bind(TcpServerTransport.create("localhost", 7000))
+//                .doOnSuccess(i-> {
+//                    System.out.println("启动RSocket成功");
+//                })
+//                .block();
     }
 }

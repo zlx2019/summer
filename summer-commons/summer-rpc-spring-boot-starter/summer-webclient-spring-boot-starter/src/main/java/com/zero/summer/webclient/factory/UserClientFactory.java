@@ -29,7 +29,9 @@ public class UserClientFactory {
     public UserServiceClient userCallService(WebClient.Builder builder){
         return HttpServiceProxyFactory
                 .builder(WebClientAdapter.forClient(builder.build()))
-                .blockTimeout(Duration.ofSeconds(10)) // 调用超时时间 10s
+                //设置服务调用超时时间为15s。 默认为5s
+                // 与全局的WebClient响应超时时间最好一致
+                .blockTimeout(Duration.ofSeconds(15))
                 .build().createClient(UserServiceClient.class);//创建接口的代理对象
     }
 
