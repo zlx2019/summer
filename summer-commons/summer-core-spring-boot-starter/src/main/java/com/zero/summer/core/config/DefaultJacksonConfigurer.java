@@ -26,7 +26,6 @@ import java.util.TimeZone;
  * @author Zero.
  * @date 2022/3/24 8:29 下午
  */
-@Configuration
 public class DefaultJacksonConfigurer {
     /**
      * 初始化 SpringMvc 全局Jackson配置

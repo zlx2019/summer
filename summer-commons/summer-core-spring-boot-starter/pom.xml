@@ -44,7 +44,6 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
-<!--            <optional>true</optional>-->
         </dependency>
         <!--Feign-->
         <dependency>

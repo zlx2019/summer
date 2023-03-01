@@ -19,6 +19,6 @@ public interface SecurityConstant {
     long EXPIRED_TIME = 60 * 60 * 24 * 10 * 1000;
     String TOKEN_PREFIX = "Bearer ";
     String TOKEN_KEY = "Authorization";
-    String[] EXCLUDE_URL = new String[]{"/user/**"};
+    String[] EXCLUDE_URL = new String[]{"/user/**","/summer/not_found/**"};
 
 }

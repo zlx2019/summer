@@ -37,11 +37,11 @@ public interface Constant {
     String USER_ID_TOKEN = "userId-token";
 
     /**
-     * 日志链路追踪id信息头
+     * 日志链路追踪id 在信息头中的Key
      */
     String TRACE_ID_HEADER = "x-traceId-header";
     /**
-     * 日志链路追踪id日志标志
+     * 日志链路追踪id在日志中的Key标志
      */
     String LOG_TRACE_ID = "traceId";
 

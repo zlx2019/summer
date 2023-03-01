@@ -79,8 +79,8 @@ public class TokenAuthorizationFilter extends OncePerRequestFilter {
         }else {
             final String authorization = request.getHeader(SecurityConstant.TOKEN_KEY);
             if (StringUtils.isBlank(authorization)) {
-                filterChain.doFilter(request,response);
-//                responseHandler("未提供Token~",response);
+//                filterChain.doFilter(request,response);
+                responseHandler("未提供Token~",response);
                 return;
             }
             // 校验Token及前缀
@@ -103,35 +103,33 @@ public class TokenAuthorizationFilter extends OncePerRequestFilter {
                 }
                 return;
             }
-            if (SecurityContextHolder.getContext().getAuthentication() == null) {
             // TODO 校验Token解析出的Username用户是否存在于数据库 (暂时不校验)
             //UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
             //if (Objects.isNull(userDetails)){
             //    responseHandler("Token的用户不存在~",response);
             //    return;
             //}
-                // 校验通过
-                // 从解析完的claims中获取用户名与用户ID
+            // 校验通过
+            // 从解析完的claims中获取用户名与用户ID
 
-                // 认证通过后,处理用户信息,设置到一些上下文会话中
-                String username = claims.getSubject();
-                String userId = Optional.ofNullable(claims.get(Constant.USER_ID_TOKEN))
-                        .map(String::valueOf).orElse(null);
-                // 构建用户认证信息
-                User userDetails = new User();
-                userDetails.setUsername(username);
-                userDetails.setId(Long.valueOf(userId));
-                // 生成SpringSecurity认证信息
-                UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, new ArrayList<>());
+            // 认证通过后,处理用户信息,设置到一些上下文会话中
+            String username = claims.getSubject();
+            String userId = Optional.ofNullable(claims.get(Constant.USER_ID_TOKEN))
+                    .map(String::valueOf).orElse(null);
+            // 构建用户认证信息
+            User userDetails = new User();
+            userDetails.setUsername(username);
+            userDetails.setId(Long.valueOf(userId));
+            // 生成SpringSecurity认证信息
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(userDetails, null, new ArrayList<>());
 
-                // 从当前http请求中 读取有关当前请求的信息
-                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                // 将认证信息设置到Security上下文,如果不设置则无法正常使用.
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                // 将UserID设置到全局会话中,方便传递
-                UserContextHolder.setUser(userId);
-            }
+            // 从当前http请求中 读取有关当前请求的信息
+            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            // 将认证信息设置到Security上下文,如果不设置则无法正常使用.
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            // 将UserID设置到全局会话中,方便传递
+            UserContextHolder.setUser(userId);
             filterChain.doFilter(request, response);
         }
     }

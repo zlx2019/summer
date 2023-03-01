@@ -15,6 +15,7 @@
         <module>summer-commons</module>
         <module>summer-services</module>
         <module>summer-config</module>
+        <module>summer-gateway</module>
     </modules>
 
     <!--依赖版本定义-->
@@ -122,6 +123,12 @@
             <dependency>
                 <groupId>com.zero.summer</groupId>
                 <artifactId>summer-auth-spring-boot-starter</artifactId>
+                <version>${summer.version}</version>
+            </dependency>
+            <!--Summer Log-->
+            <dependency>
+                <groupId>com.zero.summer</groupId>
+                <artifactId>summer-log-spring-boot-starter</artifactId>
                 <version>${summer.version}</version>
             </dependency>
             <!--lang3-->

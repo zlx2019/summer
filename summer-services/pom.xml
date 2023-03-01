@@ -65,6 +65,11 @@
             <groupId>com.zero.summer</groupId>
             <artifactId>summer-rsocket-spring-boot-starter</artifactId>
         </dependency>
+        <!--Summer Log-->
+        <dependency>
+            <groupId>com.zero.summer</groupId>
+            <artifactId>summer-log-spring-boot-starter</artifactId>
+        </dependency>
         <!--Nacos 注册中心-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

@@ -2,6 +2,8 @@ package com.zero.summer.core.holder;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 
+import java.util.Optional;
+
 /**
  * Login User 全局上下文存储器
  *
@@ -33,8 +35,13 @@ public class UserContextHolder {
         return CONTEXT.get();
     }
 
+    /**
+     * 获取用户ID,转为Long
+     * @return
+     */
     public static Long getUserId(){
-        return Long.valueOf(getUser());
+        return Optional.ofNullable(getUser()).map(Long::valueOf)
+                .orElse(null);
     }
 
     /**

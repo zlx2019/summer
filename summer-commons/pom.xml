@@ -21,6 +21,7 @@
         <module>summer-cache-spring-boot-starter</module>
         <module>summer-rpc-spring-boot-starter</module>
         <module>summer-auth-spring-boot-starter</module>
+        <module>summer-log-spring-boot-starter</module>
     </modules>
 
 </project>

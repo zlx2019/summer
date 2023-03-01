@@ -21,13 +21,13 @@ public class CustomNotFoundException implements ErrorPageRegistrar {
     @Override
     public void registerErrorPages(ErrorPageRegistry registry) {
         //重新注册404异常handler,转发到自定义的处理控制器中
-        registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND,"/music/notFound"));
+        registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND,"/summer/not_found"));
     }
 
     /**
      * 自定义404异常响应
      */
-    @GetMapping("/music/notFound")
+    @GetMapping("/summer/not_found")
     @ResponseBody
     public Result error404(){
         return Result.Failed("你迷路了吗~",404);

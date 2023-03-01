@@ -5,7 +5,6 @@ import com.zero.summer.core.constant.SecurityConstant;
 import com.zero.summer.core.holder.UserContextHolder;
 import feign.RequestInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -19,7 +18,6 @@ import java.util.Optional;
  * @author Zero.
  * @date 2022/1/26 3:05 下午
  */
-@ConditionalOnProperty(name = "summer.rpc.interceptor.feign",matchIfMissing = true)
 public class GlobalFeignInterceptor {
 
 

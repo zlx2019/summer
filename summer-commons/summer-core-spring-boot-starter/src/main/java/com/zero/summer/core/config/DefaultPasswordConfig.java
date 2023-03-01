@@ -1,7 +1,6 @@
 package com.zero.summer.core.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -11,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @author Zero.
  * @date 2022/1/23 8:44 下午
  */
-@Configuration
 public class DefaultPasswordConfig {
 
     /**

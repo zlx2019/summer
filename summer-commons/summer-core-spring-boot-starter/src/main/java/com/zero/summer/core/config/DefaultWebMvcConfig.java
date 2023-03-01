@@ -1,7 +1,7 @@
 package com.zero.summer.core.config;
 
+import com.zero.summer.core.interceptor.TraceInterceptor;
 import com.zero.summer.core.interceptor.UserInfoInterceptor;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author lx Zhang.
  * @date 2021/3/2 3:34 下午
  */
-@Configuration
 public class DefaultWebMvcConfig implements WebMvcConfigurer {
 
     /**
@@ -25,8 +24,10 @@ public class DefaultWebMvcConfig implements WebMvcConfigurer {
      **/
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //添加用户拦截器
+        // 添加用户拦截器
         registry.addInterceptor(new UserInfoInterceptor()).addPathPatterns("/**");
+        // 添加链路追踪ID拦截器
+        registry.addInterceptor(new TraceInterceptor()).addPathPatterns("/**");
     }
 
 

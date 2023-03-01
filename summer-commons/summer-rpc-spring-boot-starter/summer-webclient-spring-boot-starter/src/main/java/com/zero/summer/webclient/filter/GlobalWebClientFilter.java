@@ -33,7 +33,6 @@ public class GlobalWebClientFilter implements ExchangeFilterFunction {
     public Mono<ClientResponse> filter(ClientRequest clientRequest, ExchangeFunction next) {
         // 创建一个新的ClientRequest
         ClientRequest.Builder request = ClientRequest.from(clientRequest);
-
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         if (requestAttributes instanceof ServletRequestAttributes attributes){
             // 获取当前线程的Request
@@ -43,8 +42,14 @@ public class GlobalWebClientFilter implements ExchangeFilterFunction {
             if (StringUtils.isNotBlank(token)){
                 request.header(SecurityConstant.TOKEN_KEY,token);
             }
+            // 传递链路追踪ID
+            String traceId = curRequest.getHeader(Constant.TRACE_ID_HEADER);
+            if (StringUtils.isNotBlank(traceId)){
+                request.header(Constant.TRACE_ID_HEADER,traceId);
+            }
             // 传递UserId
             request.header(Constant.USER_ID_HEADER, UserContextHolder.getUser());
+
             //TODO 传递其他数据...
         }
         return next.exchange(request.build());

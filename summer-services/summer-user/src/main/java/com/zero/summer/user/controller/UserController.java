@@ -2,6 +2,7 @@ package com.zero.summer.user.controller;
 
 import com.zero.summer.core.entity.User;
 import com.zero.summer.core.entity.abstracts.Result;
+import com.zero.summer.core.holder.UserContextHolder;
 import com.zero.summer.core.pojo.request.user.LoginUserRequest;
 import com.zero.summer.core.pojo.request.user.SaveUserRequest;
 import com.zero.summer.core.pojo.response.user.UserResponse;
@@ -37,7 +38,7 @@ public class UserController {
      * @return  token
      */
     @GetMapping("/login")
-    public Result<String> login(@RequestBody LoginUserRequest request){
+    public Result<String> login(@RequestBody LoginUserRequest request) throws InterruptedException {
         return userService.login(request);
     }
 
@@ -49,6 +50,7 @@ public class UserController {
      */
     @GetMapping("/{username}")
     public User findUserByUsername(@PathVariable("username") String username, HttpServletRequest request) throws InterruptedException {
+        log.info("UserID:{}", UserContextHolder.getUser());
 //        log.info("userID:{}",UserContextHolder.getUser());
 //        log.info("token:{}",request.getHeader(SecurityConstant.TOKEN_KEY));
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

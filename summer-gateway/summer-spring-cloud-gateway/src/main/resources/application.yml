@@ -1,0 +1,51 @@
+#server:
+#  port: 21001
+#spring:
+#  cloud:
+#    sentinel:
+#      transport:
+#        dashboard: http://127.0.0.1:8088
+#    #gateway 配置
+#    gateway:
+#      # 网关全局连接超时设置
+#      httpclient:
+#        # 以毫秒为单位的路由请求连接超时，默认为30秒。
+#        connect-timeout: 10
+#        # 响应超时时间 单位为秒
+#        response-timeout: 10s
+#        # 为 Netty HttpClient 启用压缩。
+#        compression: true
+#      discovery:
+#        locator:
+#          enabled: true #开启从注册中心动态创建路由的功能,根据微服务名路由
+#      globalcors:
+#        #跨域配置
+#        cors-configurations:
+#          '[/**]': #匹配所有path请求
+#            allowedOriginPatterns: "*" #允许域名访问
+#            allowed-headers: "*"
+#            allow-credentials: true
+#            #允许的请求方式GET,POST,PUT,DELETE
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - PUT
+#              - DELETE
+#      #服务路由配置
+#      routes:
+#        - id: summer-user-service
+#          # 要转发到的服务,lb表示负载均衡策略,使用服务名路由
+#          uri: lb://summer-user-service
+#          # 该路由匹配的请求前缀为/api-test/*
+#          predicates:
+#            - Path=/api-user/** #服务前缀
+#          # 路由后去除掉匹配前缀
+#          filters:
+#            - StripPrefix=1 #/api-user
+#        # 案例服务路由
+#        - id: summer-example-service
+#          uri: lb://summer-example-service
+#          predicates:
+#            - Path=/api-example/**
+#          filters:
+#            - StripPrefix=1
