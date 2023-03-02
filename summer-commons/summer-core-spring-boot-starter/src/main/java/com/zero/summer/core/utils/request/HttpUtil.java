@@ -1,4 +1,4 @@
-package com.zero.summer.core.utils;
+package com.zero.summer.core.utils.request;
 
 import com.ejlchina.okhttps.HTTP;
 import com.ejlchina.okhttps.HttpResult;
@@ -90,6 +90,16 @@ public class HttpUtil {
      */
     public static HttpResult getSync(String url, Map<String, Object> params, Map<String, String> headers) {
         return CLIENT.sync(url).addUrlPara(params).addHeader(headers).get();
+    }
+    /**
+     * 发送Get 同步请求
+     *
+     * @param url     请求Url
+     * @param params  Query参数
+     * @return 请求结果
+     */
+    public static HttpResult getSync(String url, Map<String, Object> params) {
+        return CLIENT.sync(url).addUrlPara(params).get();
     }
 
     /**

@@ -1,10 +1,10 @@
 package com.zero.summer.example.controller;
 
-import com.zero.summer.core.entity.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zero.summer.core.entity.abstracts.Result;
-import com.zero.summer.core.holder.UserContextHolder;
 import com.zero.summer.core.rpc.feign.UserService;
 import com.zero.summer.core.rpc.web.UserServiceClient;
+import com.zero.summer.core.utils.request.AddressUtils;
 import com.zero.summer.rsocket.client.UserSocketClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +34,9 @@ public class IndexController {
     private UserServiceClient userServiceClient;
 
     @GetMapping("/hello")
-    public Result hello()  {
-        log.info("userID:{}",UserContextHolder.getUser());
-        User zlx = userServiceClient.findUserByUsername("zlx");
-        return Result.Success(zlx);
+    public Result hello() throws JsonProcessingException {
+        String info = AddressUtils.getRealAddressInfo("14.145.234.179");
+        return Result.Success(info);
     }
 
 }

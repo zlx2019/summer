@@ -37,6 +37,7 @@
         <dynamic.version>3.6.1</dynamic.version>
         <jetcd.version>0.7.5</jetcd.version>
         <jwt.version>0.11.5</jwt.version>
+        <fast-json.version>2.0.24</fast-json.version>
 
         <!--核心依赖版本-->
         <!--SpringBoot-->
@@ -136,6 +137,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+            <!--FastJson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fast-json.version}</version>
             </dependency>
             <!--collections4-->
             <dependency>

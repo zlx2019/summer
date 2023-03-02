@@ -22,13 +22,15 @@ import java.util.Map;
 
 /**
  * JSON 工具类
- * 配置参考 https://www.cnblogs.com/scar1et/articles/14134024.html
+ * 配置参考 <a href="https://www.cnblogs.com/scar1et/articles/14134024.html">...</a>
  *
  * @author Zero.
  * @date 2021/10/20 10:23 上午
  */
 @Slf4j
 public class JsonUtil {
+    private JsonUtil() {
+    }
 
     /**
      * Jackson 实例
@@ -65,6 +67,7 @@ public class JsonUtil {
      */
     @SneakyThrows
     public static <T> String beanToJson(T bean) {
+
         return MAPPER.writeValueAsString(bean);
     }
 
