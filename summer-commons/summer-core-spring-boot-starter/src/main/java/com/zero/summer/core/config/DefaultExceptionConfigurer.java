@@ -46,6 +46,7 @@ public class DefaultExceptionConfigurer {
      * 返回状态码:200
      */
     @ExceptionHandler(BusinessException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result handleException(BusinessException e) {
         return defHandler(e.getMessage() == null ? "业务执行异常,请检查!" : e.getMessage(), e);
     }
@@ -99,7 +100,8 @@ public class DefaultExceptionConfigurer {
             default -> "未知错误~";
         };
         String s = TextUtil.format("gRPC服务调用失败 Code: {} Message: {} Err:{}", code, errorMsg, status.getDescription());
-        return defHandler(s,e);
+        log.error(s);
+        return defHandler(errorMsg,e);
     }
 
     /**

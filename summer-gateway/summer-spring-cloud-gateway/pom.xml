@@ -53,6 +53,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!--gRPC Netty,由于Core包内引入了一个gRPC依赖,导致冲突,网关这里需要添加此依赖-->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
         <!--防止出现一些危险警告-->
         <dependency>
             <groupId>io.netty</groupId>
