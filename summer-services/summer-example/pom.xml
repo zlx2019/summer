@@ -11,6 +11,32 @@
     <description>
         Summer - 案例服务
     </description>
-
     <artifactId>summer-example</artifactId>
+    <build>
+        <plugins>
+            <!--Spring Native 打包插件 -->
+            <!--打包命令: mvn -Pnative native:compile -->
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+            </plugin>
+            <!--SpringBoot 打包插件-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.zero.summer.ExampleApplication</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
 </project>

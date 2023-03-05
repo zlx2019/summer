@@ -274,15 +274,14 @@
         </dependencies>
     </dependencyManagement>
 
-
     <build>
         <plugins>
             <!--Spring Native 打包插件 -->
             <!--打包命令: mvn -Pnative native:compile -->
-<!--            <plugin>-->
-<!--                <groupId>org.graalvm.buildtools</groupId>-->
-<!--                <artifactId>native-maven-plugin</artifactId>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+            </plugin>
             <!--SpringBoot 打包插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
