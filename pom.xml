@@ -38,16 +38,23 @@
         <jetcd.version>0.7.5</jetcd.version>
         <jwt.version>0.11.5</jwt.version>
         <fast-json.version>2.0.24</fast-json.version>
+        <!--GRPC 与 Protoc编译器 版本-->
+        <grpc.version>1.51.0</grpc.version>
+        <protoc.version>3.21.7</protoc.version>
+        <protobuf-format.version>1.4</protobuf-format.version>
 
         <!--核心依赖版本-->
         <!--SpringBoot-->
         <spring-boot.version>3.0.2</spring-boot.version>
         <!--SpringCloud-->
         <spring-cloud.version>2022.0.1</spring-cloud.version>
-        <!--SpringCloudAlibaba 预发布版本-->
+        <!--SpringCloudAlibaba-->
         <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>
         <!--Mybatis Plus-->
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
+        <!--SpringBoot gRPC-->
+        <grpc-spring.version>5.0.0</grpc-spring.version>
+
         <!--Summer Version-->
         <summer.version>1.0</summer.version>
     </properties>
@@ -120,6 +127,12 @@
                 <artifactId>summer-feign-spring-boot-starter</artifactId>
                 <version>${summer.version}</version>
             </dependency>
+            <!--Summer gRPC-->
+            <dependency>
+                <groupId>com.zero.summer</groupId>
+                <artifactId>summer-grpc-spring-boot-starter</artifactId>
+                <version>${summer.version}</version>
+            </dependency>
             <!--Summer Auth-->
             <dependency>
                 <groupId>com.zero.summer</groupId>
@@ -190,6 +203,12 @@
                 <artifactId>jetcd-core</artifactId>
                 <version>${jetcd.version}</version>
             </dependency>
+            <!--Protobuf-->
+            <dependency>
+                <groupId>com.googlecode.protobuf-java-format</groupId>
+                <artifactId>protobuf-java-format</artifactId>
+                <version>${protobuf-format.version}</version>
+            </dependency>
 
             <!--p6spy 开发环境数据源-->
             <dependency>
@@ -209,8 +228,12 @@
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>${dynamic.version}</version>
             </dependency>
-
-
+            <!--SpringBoot gRPC整合包-->
+            <dependency>
+                <groupId>io.github.lognet</groupId>
+                <artifactId>grpc-spring-boot-starter</artifactId>
+                <version>${grpc-spring.version}</version>
+            </dependency>
             <!--Mybatis Plus与SpringBoot整合包-->
             <!--注意版本,想要兼容SpringBoot3至少需要3.5.3起步-->
             <dependency>
@@ -256,10 +279,10 @@
         <plugins>
             <!--Spring Native 打包插件 -->
             <!--打包命令: mvn -Pnative native:compile -->
-            <plugin>
-                <groupId>org.graalvm.buildtools</groupId>
-                <artifactId>native-maven-plugin</artifactId>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.graalvm.buildtools</groupId>-->
+<!--                <artifactId>native-maven-plugin</artifactId>-->
+<!--            </plugin>-->
             <!--SpringBoot 打包插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>

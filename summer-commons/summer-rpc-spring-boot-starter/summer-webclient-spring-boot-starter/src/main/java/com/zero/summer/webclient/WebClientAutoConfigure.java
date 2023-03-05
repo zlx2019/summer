@@ -2,7 +2,6 @@ package com.zero.summer.webclient;
 
 import com.zero.summer.webclient.config.WebClientConfigure;
 import com.zero.summer.webclient.config.WebClientFactoryConfigure;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Import;
  * @date 2023/2/14 3:51 PM
  */
 @Import({WebClientConfigure.class, WebClientFactoryConfigure.class})
-@ConditionalOnProperty(name = "summer.rpc.enable.web-client",matchIfMissing = true)
 public class WebClientAutoConfigure {
 
 }

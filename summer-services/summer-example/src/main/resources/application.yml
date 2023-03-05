@@ -103,3 +103,25 @@
 #    interceptor:
 #      #开启 feign拦截器
 #      feign: true
+#
+#grpc:
+#  # grpc服务端口
+#  port: 12003
+#  # netty配置
+#  netty-server:
+#    # 最大传输数据信息大小，超过此大小的消息将被丢弃。默认为 4194304 字节。
+#    max-inbound-message-size: 50MB
+#    # 最大元数据信息大小
+#    max-inbound-metadata-size: 1MB
+#    # Netty 服务器保持长连接的最长时间，即在没有读取或写入数据的情况下，连接可以保持打开状态的最长时间。
+#    keep-alive-time: 60s
+#    # Netty 收到长连接后,等待数据的最长时间,如果在此时间内没有收到客户端的任何消息，则连接将被关闭。
+#    keep-alive-timeout: 60s
+#    # 允许客户端在保持连接的情况下空闲的时间，默认为 1 分钟。
+#    permit-keep-alive-time: 60s
+#    # 允许客户端在没有未完成的调用的情况下保持连接的时间，默认为 false。
+#    permit-keep-alive-without-calls: true
+#  # 关闭安全相关
+#  security:
+#    auth:
+#      enabled: false

@@ -46,9 +46,13 @@ public interface Constant {
     String LOG_TRACE_ID = "traceId";
 
     /**
-     * RPC通信时 用户ID标识Key
+     * gRPC通信时 UserId 在metadata中的Key
      */
-    String RPC_USER_ID_KEY = "rpc-user-key";
+    String RPC_USER_ID = "rpc-user-key";
+    /**
+     * gRPC通信时,traceId 在metadata中的key
+     */
+    String RPC_TRACE_KEY = "rpc-trace-key";
 
     /**
      * RPC通信时,服务端响应码Key

@@ -23,5 +23,11 @@
         <module>summer-auth-spring-boot-starter</module>
         <module>summer-log-spring-boot-starter</module>
     </modules>
-
+    <dependencies>
+        <!--配置属性绑定-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+    </dependencies>
 </project>

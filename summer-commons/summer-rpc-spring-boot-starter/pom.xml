@@ -13,6 +13,7 @@
         <module>summer-webclient-spring-boot-starter</module>
         <module>summer-feign-spring-boot-starter</module>
         <module>summer-rsocket-spring-boot-starter</module>
+        <module>summer-grpc-spring-boot-starter</module>
     </modules>
     <artifactId>summer-rpc-spring-boot-starter</artifactId>
     <description>

@@ -30,6 +30,9 @@ public class SentinelBlockRequestHandler implements BlockRequestHandler {
     public Mono<ServerResponse> handleRequest(ServerWebExchange serverWebExchange, Throwable throwable) {
         // 限流枚举
         Result<Object> result = Result.Failed(GatewayError.FLOW.getMessage(),GatewayError.FLOW.getCode());
+//        Map<String,Object> result = new HashMap<>();
+//        result.put("message",GatewayError.FLOW.getMessage());
+//        result.put("code",GatewayError.FLOW.getCode());
         return ServerResponse.status(HttpStatus.TOO_MANY_REQUESTS)//响应码
                 .contentType(MediaType.APPLICATION_JSON)//响应数据格式
                 .bodyValue(result);//响应体

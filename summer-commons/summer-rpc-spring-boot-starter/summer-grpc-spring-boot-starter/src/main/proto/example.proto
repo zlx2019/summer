@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package example;
+
+// 引入Google提供好的时间类型
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// java的package路径
+option java_package = "com.zero.summer.grpc.pb.example";
+// 指定java类名
+option java_outer_classname = "Example";
+// 是否生成的所有java文件 合并到一个文件内
+option java_multiple_files = true;
+// 是否生成定义的service服务,如果为false，那怕定义了也不会生成.
+option java_generic_services = true;
+
+// 生成代码时的优化,默认为:SPEED
+// SPEED 提供解析与序列化速度
+// CODE_SIZE 代码体积大小
+// LITE_RUNTIME 优化message运行时
+//
+option optimize_for = SPEED;
+
+
+// 请求参数
+message ExampleRequest{
+  string message = 1;
+}
+// 请求响应
+message ExampleReply{
+  string result = 1;
+}
+
+// 定义服务
+service ExampleService{
+  // 定义接口
+  rpc ExampleTest(ExampleRequest)returns(ExampleReply);
+}

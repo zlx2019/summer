@@ -5,6 +5,9 @@ import com.zero.summer.core.entity.abstracts.Result;
 import com.zero.summer.core.enums.ResultEnum;
 import com.zero.summer.core.exception.BusinessException;
 import com.zero.summer.core.exception.CustomNotFoundException;
+import com.zero.summer.core.utils.text.TextUtil;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
@@ -77,6 +80,26 @@ public class DefaultExceptionConfigurer {
     @ExceptionHandler(BadCredentialsException.class)
     public Result handleAuthLoginException(BadCredentialsException e){
         return defHandler("登录失败,用户名密码不正确!",e);
+    }
+
+
+    /**
+     * gRPC 通信异常处理
+     * @param e grpc响应的异常
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(StatusRuntimeException.class)
+    public Result<?> gRpcHandleExecution(StatusRuntimeException e){
+        // 将异常转换为gRPC的Status的Code,根据该Code区分异常类型
+        Status status = Status.fromThrowable(e);
+        Status.Code code = status.getCode();
+        String errorMsg = switch (code){
+            case UNAVAILABLE -> "服务节点不可用,请确认服务已启动~";
+            case UNAUTHENTICATED -> "访问权限不足~";
+            default -> "未知错误~";
+        };
+        String s = TextUtil.format("gRPC服务调用失败 Code: {} Message: {} Err:{}", code, errorMsg, status.getDescription());
+        return defHandler(s,e);
     }
 
     /**
@@ -153,6 +176,10 @@ public class DefaultExceptionConfigurer {
         return defHandler(ResultEnum.NOT_AUTHORIZED_ERR.getMessage(), e);
     }
 
+
+    private Result defHandler(ResultEnum enums, Exception e) {
+        return defHandler(enums.getMessage(),e);
+    }
     /**
      * 记录异常日志 响应客户端
      *
@@ -165,8 +192,4 @@ public class DefaultExceptionConfigurer {
         return Result.Failed(message);
     }
 
-    private Result defHandler(ResultEnum enums, Exception e) {
-        log.error(enums.getMessage(),e);
-        return Result.Failed(enums);
-    }
 }
