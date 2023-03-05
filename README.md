@@ -39,6 +39,7 @@
 │   └── summer-rpc-spring-boot-starter
 │       ├── summer-feign-spring-boot-starter
 │       ├── summer-rsocket-spring-boot-starter
+│       ├── summer-grpc-spring-boot-starter
 │       └── summer-webclient-spring-boot-starter
 ├── summer-config
 ├── summer-doc
