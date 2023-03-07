@@ -306,6 +306,15 @@ public class SpringContextUtil implements ApplicationContextAware, BeanFactoryPo
     }
 
     /**
+     * 将对象实例,作为Bean注入到IOC容器中
+     * @param beanName Bean的名称
+     * @param instance Bean的实例
+     */
+    public static void injectBean(String beanName,Object instance){
+        defaultBeanFactory.registerSingleton(beanName,instance);
+    }
+
+    /**
      * 通过 Class元数据信息 将其实例实例化后注入IOC容器
      * 默认 Bean 名称为全类名 风格为驼峰命名(首字母小写)
      * 如: Class Name: SysUserService --> Bean Name: sysUserService
