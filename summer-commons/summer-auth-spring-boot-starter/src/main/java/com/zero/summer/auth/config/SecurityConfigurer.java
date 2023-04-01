@@ -1,5 +1,6 @@
 package com.zero.summer.auth.config;
 
+import com.zero.summer.auth.filter.CustomCsrfFilter;
 import com.zero.summer.auth.filter.TokenAuthorizationFilter;
 import com.zero.summer.auth.handler.AccessDeniedExceptionHandler;
 import com.zero.summer.auth.handler.AuthenticationExceptionHandler;
@@ -20,6 +21,13 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import static org.springframework.http.HttpMethod.DELETE;
+import static org.springframework.http.HttpMethod.POST;
 
 /**
  * SpringSecurity配置
@@ -121,6 +129,15 @@ public class SecurityConfigurer  {
                 .authenticationEntryPoint(authenticationEntryPoint())
                 // 设置权限不足异常处理类
                 .accessDeniedHandler(accessDeniedHandler());
+
+        // 方向监控服务所需要的端点
+        http.addFilterAfter(new CustomCsrfFilter(), BasicAuthenticationFilter.class)
+                .csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()).ignoringRequestMatchers(
+                                new AntPathRequestMatcher("/instances", POST.toString()),
+                                new AntPathRequestMatcher("/instances/*", DELETE.toString()),
+                                new AntPathRequestMatcher("/actuator/**")
+                        ));
         return http.build();
     }
 }

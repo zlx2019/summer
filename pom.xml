@@ -16,6 +16,7 @@
         <module>summer-services</module>
         <module>summer-config</module>
         <module>summer-gateway</module>
+        <module>summer-monitor</module>
     </modules>
 
     <!--依赖版本定义-->
@@ -46,6 +47,7 @@
         <!--核心依赖版本-->
         <!--SpringBoot-->
         <spring-boot.version>3.0.2</spring-boot.version>
+        <spring-boot-admin.version>3.0.2</spring-boot-admin.version>
         <!--SpringCloud-->
         <spring-cloud.version>2022.0.1</spring-cloud.version>
         <!--SpringCloudAlibaba-->
@@ -54,7 +56,6 @@
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
         <!--SpringBoot gRPC-->
         <grpc-spring.version>5.0.0</grpc-spring.version>
-
         <!--Summer Version-->
         <summer.version>1.0</summer.version>
     </properties>
@@ -208,6 +209,17 @@
                 <groupId>com.googlecode.protobuf-java-format</groupId>
                 <artifactId>protobuf-java-format</artifactId>
                 <version>${protobuf-format.version}</version>
+            </dependency>
+            <!--端点监控 SpringBoot Admin-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
             </dependency>
 
             <!--p6spy 开发环境数据源-->

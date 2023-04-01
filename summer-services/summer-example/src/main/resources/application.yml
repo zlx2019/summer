@@ -9,6 +9,10 @@
 #      exposure:
 #        # 打开所有监控端点
 #        include: '*'
+#  info:
+#    env:
+#      # 公开所有以 info. 开头的环境属性
+#      enabled: true
 #  endpoint:
 #    # 开启重新启动服务端点
 #    restart:

@@ -1,0 +1,11 @@
+#server:
+#  port: 31001
+#spring:
+#  boot:
+#    admin:
+#      discovery:
+#        # 要监控的服务
+#        services:
+#          - summer-gateway-service
+#          - summer-example-service
+#          - summer-user-service
