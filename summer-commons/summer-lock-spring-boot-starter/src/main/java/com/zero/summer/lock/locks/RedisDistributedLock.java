@@ -62,7 +62,7 @@ public class RedisDistributedLock extends AbstractDistributedLock {
             lockResult = upLock(key,expire,expireUnit);
         }
         log.info("加锁完成，tag:{}",lockTag.get());
-        return LockResult.of(lockResult);
+        return LockResult.of(lockResult).setKey(key);
     }
 
     /**
@@ -93,21 +93,21 @@ public class RedisDistributedLock extends AbstractDistributedLock {
     /**
      * 释放锁/解锁
      *
-     * @param key key值
+     * @param lockResult 加锁结果对象,从中获取要释放的锁
      * @return 释放结果
      */
     @Override
-    public boolean releaseLock(String key) {
+    public boolean releaseLock(LockResult lockResult) {
         try {
             return (boolean) redisTemplate.execute((RedisCallback<Boolean>) connection->{
                 RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
                 byte[] luaBytes = redisTemplate.getStringSerializer().serialize(UNLOCK_LAU);
                 // 使用lua脚本删除redis中匹配tag的key，可以避免由于方法执行时间过长而redis锁自动过期失效的时候误删其他线程的锁
                 // spring自带的执行脚本方法中，集群模式直接抛出不支持执行脚本的异常，所以只能拿到原redis的connection来执行脚本
-                return connection.eval(luaBytes, ReturnType.BOOLEAN, 1, serializer.serialize(key), serializer.serialize(lockTag.get()));
+                return connection.eval(luaBytes, ReturnType.BOOLEAN, 1, serializer.serialize(lockResult.getKey()), serializer.serialize(lockTag.get()));
             });
         } catch (Exception e) {
-            log.error("key:{},释放锁异常:{}",key,e);
+            log.error("key:{},释放锁异常:{}",lockResult.getKey(),e);
         } finally {
             lockTag.remove();//移除tag
         }

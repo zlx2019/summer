@@ -1,7 +1,5 @@
 package com.zero.summer.core.lock;
 
-import com.zero.summer.core.exception.BusinessException;
-
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -76,23 +74,12 @@ public interface DistributedLock extends Lock {
     //TODO 获取锁(阻塞式+公平锁)
 
 
-    /**
-     * 释放锁(Redis)
-     *
-     * @param key key值
-     * @return 释放结果
-     */
-    default boolean releaseLock(String key){
-        throw new BusinessException("Redis分布式锁释放");
-    }
 
     /**
-     * 释放锁(Etcd)
-     * @param lockResult  锁对象
+     * 释放锁
+     * @param lockResult  加锁结果对象
      * @return  释放结果
      */
-    default boolean releaseLock(LockResult lockResult){
-        throw new BusinessException("Etcd分布式锁释放");
-    };
+    boolean releaseLock(LockResult lockResult);
 
 }

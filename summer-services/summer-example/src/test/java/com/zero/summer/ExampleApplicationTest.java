@@ -1,7 +1,6 @@
 package com.zero.summer;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zero.summer.core.entity.Order;
+import com.zero.summer.cache.template.CacheTemplate;
 import com.zero.summer.example.service.IOrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +15,11 @@ public class ExampleApplicationTest {
 
     @Autowired
     private IOrderService orderService;
+    @Autowired
+    private CacheTemplate cacheTemplate;
     @Test
     void test(){
-        Page<Order> list = orderService.listPage(1, 3);
-
-        list.getRecords().forEach(System.out::println);
+        Object val = cacheTemplate.get("ttt1");
+        System.out.println(val);
     }
 }

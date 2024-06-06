@@ -67,7 +67,6 @@ public class JsonUtil {
      */
     @SneakyThrows
     public static <T> String beanToJson(T bean) {
-
         return MAPPER.writeValueAsString(bean);
     }
 

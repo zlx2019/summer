@@ -51,9 +51,10 @@ public class SuperServiceImpl<M extends BaseMapper<T>,T> extends ServiceImpl<M,T
     public boolean constantSave(T model, DistributedLock lock, String lockKey, Wrapper<T> conditionWrapper, String message) {
         Optional.ofNullable(lock).orElseThrow(()-> new BusinessException(ExceptionMsgEnum.LOCK_NULL.getMessage()));
         Optional.ofNullable(lockKey).orElseThrow(()-> new BusinessException(ExceptionMsgEnum.LOCK_KEY_NULL.getMessage()));
+        LockResult lockResult = null;
         try {
             //加锁
-            LockResult lockResult = lock.lock(lockKey);
+            lockResult = lock.lock(lockKey);
             if (lockResult.isLock()){
                 //是否已存在记录,
                 if (super.count(conditionWrapper) == 0){
@@ -68,7 +69,7 @@ public class SuperServiceImpl<M extends BaseMapper<T>,T> extends ServiceImpl<M,T
             }
         }finally {
             //必须释放锁
-            lock.releaseLock(lockKey);
+            lock.releaseLock(lockResult);
         }
     }
 
