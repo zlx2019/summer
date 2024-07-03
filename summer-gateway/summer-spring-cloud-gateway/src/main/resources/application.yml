@@ -1,12 +1,28 @@
 #server:
-#  port: 21001
+#  port: 32001
 #spring:
+#  boot:
+#    # 服务监控配置
+#    admin:
+#      client:
+#        # 是否注册到监控服务
+#        enabled: true
+#        # Spring Boot Admin 服务
+#        url: summer-monitor-service
+#        # Spring Boot Admin 服务端认证用户名
+#        username: summer-admin
+#        # Spring Boot Admin 服务端认证密码
+#        password: 123456
 #  cloud:
 #    sentinel:
 #      transport:
 #        dashboard: http://127.0.0.1:8088
 #    #gateway 配置
 #    gateway:
+#      # 关闭http与grpc转换, 否则会和自己的grpc模块产生冲突
+#      filter:
+#        json-to-grpc:
+#          enabled: true
 #      # 网关全局连接超时设置
 #      httpclient:
 #        # 以毫秒为单位的路由请求连接超时，默认为30秒。
@@ -49,3 +65,12 @@
 #            - Path=/api-example/**
 #          filters:
 #            - StripPrefix=1
+#
+## 监控配置
+#management:
+#  endpoint:
+#    logfile:
+#      # 开启日志监控
+#      enabled: true
+#      # 指定该服务的日志文件
+#      external-file: ../summer-logs/application/summer-gateway-service/summer-gateway-service.log

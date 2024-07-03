@@ -1,0 +1,120 @@
+### spring-boot-actuator配置
+management:
+  health:
+    circuitbreakers:
+      # 开启断路器端点
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        # 打开所有监控端点
+        include: '*'
+  info:
+    env:
+      # 公开所有以 info. 开头的环境属性
+      enabled: true
+  endpoint:
+    # 开启重新启动服务端点
+    restart:
+      enabled: true
+    # 开启优雅关闭服务端点
+    shutdown:
+      enabled: true
+    health:
+      # 始终显示
+      show-details: always
+
+### Spring相关配置
+spring:
+  servlet:
+    multipart:
+      # 文件上传大小限制
+      max-file-size: -1
+      max-request-size: -1
+  cloud:
+    # feign全局配置 请参考https://juejin.cn/post/7130041310177820685
+    openfeign:
+      # 开启feign 断路器
+      circuitbreaker:
+        enabled: true
+      # 全局Feign客户端配置
+      client:
+        config:
+          default:
+            # 读取数据超时 20s,默认为10s
+            readTimeout: 20000
+            # 连接超时 20s
+            connectTimeout: 20000
+            # 日记录级别
+            logger-level: full
+      compression:
+        # 开启请求Gzib压缩
+        request:
+          enabled: true
+          mime-types: text/xml,application/xml,application/json
+          min-request-size: 2048
+        response:
+          # 开启Feign响应Gzib压缩
+          enabled: true
+      # 配置Feign内置请求客户端
+      httpclient:
+        enabled: false
+        # 每个路由的最大连接数的默认值。 默认50
+        max-connections-per-route: 100
+        # 最大连接数 默认200
+        max-connections: 1000
+        # 使用http5作为客户端
+        hc5:
+          enabled: true
+# resilience4j 全局配置
+resilience4j:
+  # 时间限制器配置
+  timelimiter:
+    configs:
+      default:
+        # 服务调用超时时间(建议与feign保持一致)
+        timeoutDuration: 30s
+        # 超时后直接取消正在运行的任务
+        cancel-running-future: true
+
+###Mybatis Plus全局配置
+mybatis-plus:
+  # Mapper的Xml文件位置
+  mapper-locations: classpath*:/mapper/**/*.xml
+  # 启动时,是否检测Xml文件是否存在
+  check-config-location: false
+  global-config:
+    db-config:
+      #逻辑删除默认为 1: 已删除  0:未删除,如果与需求不符合需要更改。
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      # ID生成策略,自己填充。该类型可以通过自己注册自动填充插件进行填充
+      id-type: input
+  configuration:
+    # 是否开启驼峰下划线转换 passWord To pass_word
+    map-underscore-to-camel-case: true
+    # 是否开启二级缓存
+    cache-enabled: false
+    # resultMap自动映射规则
+    auto-mapping-behavior: partial
+    # 自动映射失败后如何处理
+    auto-mapping-unknown-column-behavior: none
+grpc:
+  # netty配置
+  netty-server:
+    # 最大传输数据信息大小，超过此大小的消息将被丢弃。默认为 4194304 字节。
+    max-inbound-message-size: 50MB
+    # 最大元数据信息大小
+    max-inbound-metadata-size: 1MB
+    # Netty 服务器保持长连接的最长时间，即在没有读取或写入数据的情况下，连接可以保持打开状态的最长时间。
+    keep-alive-time: 60s
+    # Netty 收到长连接后,等待数据的最长时间,如果在此时间内没有收到客户端的任何消息，则连接将被关闭。
+    keep-alive-timeout: 60s
+    # 允许客户端在保持连接的情况下空闲的时间，默认为 1 分钟。
+    permit-keep-alive-time: 60s
+    # 允许客户端在没有未完成的调用的情况下保持连接的时间，默认为 false。
+    permit-keep-alive-without-calls: true
+  # 关闭安全相关
+  security:
+    auth:
+      enabled: false
